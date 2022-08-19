@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import * as Sty from './styled';
+import { useNavigate } from 'react-router-dom';
 //hooks são uma API que facilitam a utilização de algumas coisas no React
 //useState permite que setar e alterar estados
 
@@ -8,25 +9,37 @@ import axios from 'axios';
 //todo componente tem esse parametro props
 
 function App(props) {
+  const navigate = useNavigate();
   const [usuario, setUsuario] = useState('');
 
   function handlePesquisa() {
     axios
       .get(`https://api.github.com/users/${usuario}/repos`)
-      .then(response => console.log(response.data));
+      .then((response) => {
+        const repositories = response.data;
+        const repositoriesName = [];
+        repositories.map((repository) => {
+          repositoriesName.push(repository.name);
+        });
+        localStorage.setItem(
+          'repositoresName',
+          JSON.stringify(repositoriesName)
+        );
+        navigate.push('/repositories');
+      });
   }
 
   return (
     <>
-      <input
+      <Sty.Input
         className="usuarioInput"
         placeholder="Usuário"
         value={usuario}
-        onChange={e => setUsuario(e.target.value)}
+        onChange={(e) => setUsuario(e.target.value)}
       />
-      <button type="button" onClick={handlePesquisa}>
+      <Sty.Button type="button" onClick={handlePesquisa}>
         Pesquisar
-      </button>
+      </Sty.Button>
     </>
   );
 }

@@ -2,8 +2,8 @@ import React from 'react';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 //No React-Router-Dom v6, o Switch foi trocado pelo 'Routes', então é só alterar o import
 
-import Repositories from './Repositories';
-import Home from './Home';
+import Repositories from './pages/Repositories';
+import Home from './pages/Home';
 
 export default function Routess() {
   return (
