@@ -3,7 +3,7 @@ import * as Sty from './styled';
 
 export default function Repositories() {
   return (
-    <>
+    <Sty.Container>
       <Sty.Title>Repositórios</Sty.Title>
       <Sty.List>
         <Sty.ListItem>Repositório 01:</Sty.ListItem>
@@ -17,6 +17,6 @@ export default function Repositories() {
         <Sty.ListItem>Repositório 09:</Sty.ListItem>
         <Sty.ListItem>Repositório 10:</Sty.ListItem>
       </Sty.List>
-    </>
+    </Sty.Container>
   );
 }

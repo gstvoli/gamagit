@@ -22,7 +22,7 @@ function App(props) {
           repositoriesName.push(repository.name);
         });
         localStorage.setItem(
-          'repositoresName',
+          'repositoriesName',
           JSON.stringify(repositoriesName)
         );
         navigate.push('/repositories');
@@ -30,17 +30,19 @@ function App(props) {
   }
 
   return (
-    <>
-      <Sty.Input
-        className="usuarioInput"
-        placeholder="Usuário"
-        value={usuario}
-        onChange={(e) => setUsuario(e.target.value)}
-      />
-      <Sty.Button type="button" onClick={handlePesquisa}>
-        Pesquisar
-      </Sty.Button>
-    </>
+    <Sty.HomeContainer>
+      <Sty.Content>
+        <Sty.Input
+          className="usuarioInput"
+          placeholder="Usuário"
+          value={usuario}
+          onChange={(e) => setUsuario(e.target.value)}
+        />
+        <Sty.Button type="button" onClick={handlePesquisa}>
+          Pesquisar
+        </Sty.Button>
+      </Sty.Content>
+    </Sty.HomeContainer>
   );
 }
 
