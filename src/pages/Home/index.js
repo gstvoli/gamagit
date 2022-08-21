@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 function App(props) {
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState('');
+  const [error, setError] = useState(false);
 
   function handlePesquisa() {
     axios
@@ -25,7 +26,11 @@ function App(props) {
           'repositoriesName',
           JSON.stringify(repositoriesName)
         );
-        navigate.push('/repositories');
+        setError(false);
+        navigate('/repositories');
+      })
+      .catch((err) => {
+        setError(true);
       });
   }
 
@@ -42,6 +47,11 @@ function App(props) {
           Pesquisar
         </Sty.Button>
       </Sty.Content>
+      {error ? (
+        <Sty.ErrorMsg>Ocorreu um erro. Tente novamente.</Sty.ErrorMsg>
+      ) : (
+        ''
+      )}
     </Sty.HomeContainer>
   );
 }
